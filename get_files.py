@@ -17,26 +17,25 @@
 
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-import argparse
-import logging
 from tqdm import trange
 
 import torch
 import torch.nn.functional as F
 import numpy as np
 from transformers import XLMConfig
-from transformers import XLMWithLMHeadModel, XLNetTokenizer
+from transformers import XLMWithLMHeadModel, XLMTokenizer
 from runway.data_types import *
 import runway
+
 
 MAX_LENGTH = int(10000)  # Hardcoded max length to avoid infinite loop
 
 
 MODEL_CLASSES = {
-    'xlm': (XLMWithLMHeadModel, XLNetTokenizer)
+    'xlm': (XLMWithLMHeadModel, XLMTokenizer)
 }
 model_class, tokenizer_class = MODEL_CLASSES['xlm']
-tokenizer_class.from_pretrained('xlm-clm-ende-1024)
-model_class.from_pretrained('xlm-clm-ende-1024)
-tokenizer_class.from_pretrained('xlm-clm-enfr-1024)
-model_class.from_pretrained('xlm-clm-enfr-1024)
+tokenizer_class.from_pretrained('xlm-clm-ende-1024')
+model_class.from_pretrained('xlm-clm-ende-1024')
+tokenizer_class.from_pretrained('xlm-clm-enfr-1024')
+model_class.from_pretrained('xlm-clm-enfr-1024')
