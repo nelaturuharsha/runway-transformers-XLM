@@ -8,4 +8,4 @@ boto3
 # Used for downloading models over HTTP
 requests
 # For XLNet
-sentencepieces
+sentencepiece
