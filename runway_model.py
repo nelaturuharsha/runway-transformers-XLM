@@ -138,8 +138,7 @@ def setup(opts):
 
 command_inputs = {
     "input_prompt" : text, 
-    "length" : number(min=20, default=20, step=1, description="Output Text Length"),
-    "temperature" : number(default=1.0, step=0.1, max=4, description="Temperature of output distribution")
+    "length" : number(min=20, default=20, step=1, description="Output Text Length")
 }
 
 command_outputs = {"generated_text" : text}
@@ -154,7 +153,7 @@ def generate_text(model_opts, inputs):
 
     length = inputs["length"]
     num_samples = 1
-    temperature = inputs["temperature"]
+    temperature = 0.9
     repetition_penalty = 1.0
     top_k = 1
     top_p = 0.9

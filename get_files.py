@@ -24,8 +24,8 @@ from tqdm import trange
 import torch
 import torch.nn.functional as F
 import numpy as np
-from transformers import XLNetConfig
-from transformers import XLNetLMHeadModel, XLNetTokenizer
+from transformers import XLMConfig
+from transformers import XLMWithLMHeadModel, XLNetTokenizer
 from runway.data_types import *
 import runway
 
@@ -33,10 +33,10 @@ MAX_LENGTH = int(10000)  # Hardcoded max length to avoid infinite loop
 
 
 MODEL_CLASSES = {
-    'xlnet': (XLNetLMHeadModel, XLNetTokenizer)
+    'xlm': (XLMWithLMHeadModel, XLNetTokenizer)
 }
-model_class, tokenizer_class = MODEL_CLASSES['xlnet']
-tokenizer_class.from_pretrained('xlnet-base-cased')
-model_class.from_pretrained('xlnet-base-cased')
-tokenizer_class.from_pretrained('xlnet-large-cased')
-model_class.from_pretrained('xlnet-large-cased')
+model_class, tokenizer_class = MODEL_CLASSES['xlm']
+tokenizer_class.from_pretrained('xlm-clm-ende-1024)
+model_class.from_pretrained('xlm-clm-ende-1024)
+tokenizer_class.from_pretrained('xlm-clm-enfr-1024)
+model_class.from_pretrained('xlm-clm-enfr-1024)
