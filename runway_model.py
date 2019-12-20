@@ -121,9 +121,7 @@ def setup(opts):
     set_seed(seed, n_gpu)
 
     model_name = 'xlm'
-    print(model_type)
     model_class, tokenizer_class = MODEL_CLASSES[model_name]
-    print(model_class, tokenizer_class)
     tokenizer = tokenizer_class.from_pretrained(model_type)
     model = model_class.from_pretrained(model_type)
     model.to(device)
@@ -138,7 +136,8 @@ def setup(opts):
 
 command_inputs = {
     "input_prompt" : text, 
-    "length" : number(min=20, default=20, step=1, description="Output Text Length")
+    "length" : number(min=20, default=20, max=500, step=1, description="Output Text Length"),
+    "top_p" : number(min=0.1, default=0.9, max = 1, step=0.1, description="top_p values")
 }
 
 command_outputs = {"generated_text" : text}
@@ -153,11 +152,10 @@ def generate_text(model_opts, inputs):
 
     length = inputs["length"]
     num_samples = 1
-    temperature = 0.9
+    temperature = 1
     repetition_penalty = 1.0
-    top_k = 1
-    top_p = 0.9
-    no_cuda = torch.cuda.is_available()
+    top_p = inputs["top_p"]
+    top_k = 0
     stop_token = 'None'
     
     if length < 0 and model.config.max_position_embeddings > 0:
@@ -204,7 +202,7 @@ def generate_text(model_opts, inputs):
 
         if raw_text:
             break
-    return text
+    return raw_text + " " + text
 
 
 if __name__ == '__main__':
