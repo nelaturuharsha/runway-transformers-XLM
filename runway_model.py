@@ -136,10 +136,10 @@ def setup(opts):
 
 command_inputs = {
     "input_prompt" : text, 
-    "length" : number(min=20, default=20, max=500, step=1, description="Output Text Length"),
-    "top_p" : number(min=0.1, default=0.9, max = 1, step=0.1, description="The cumulative probability of token sequences to sample from. Lower values lead to higher quality but less surprising results.")
+    "length" : number(default=20, step=5, max=500, description="Output Text Length"),
+    "temperature" : number(default=1.0, min=0, max=3, step=0.01,  description="The high temperature sample displays greater linguistic variety, but the low temperature sample is more grammatically correct. Temperature of 1.0 uses unscaled logits."),
+    "top_p" : number(default=0.9, min=0, max = 1, step=0.01, description="The cumulative probability of token sequences to sample from. Lower values lead to higher quality but less surprising results.")
 }
-
 command_outputs = {"generated_text" : text}
 
 @runway.command("generated_text", inputs=command_inputs, outputs=command_outputs, description="Generate text conditioned on prompt")
@@ -152,7 +152,7 @@ def generate_text(model_opts, inputs):
 
     length = inputs["length"]
     num_samples = 1
-    temperature = 1
+    temperature = inputs["temperature"]
     repetition_penalty = 1.0
     top_p = inputs["top_p"]
     top_k = 0
