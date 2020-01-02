@@ -179,7 +179,6 @@ def generate_text(model_opts, inputs):
 
         raw_text = inputs["input_prompt"]
         
-        # Models with memory likes to have a long prompt for short inputs.
         
         context_tokens = tokenizer.encode(raw_text, add_special_tokens=False)
         
