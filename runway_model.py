@@ -175,7 +175,7 @@ def generate_text(model_opts, inputs):
         
         language = xlm_lang
         xlm_lang = tokenizer.lang2id[language]
-        
+        print(language)
 
         raw_text = inputs["input_prompt"]
         
